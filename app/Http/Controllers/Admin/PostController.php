@@ -94,8 +94,9 @@ class PostController extends Controller
         $request->validate([
             'title' =>['required','string',Rule::unique('posts')->ignore($post->id),'min:2','max:75'],
             'content' =>'string',
-            'image' =>'url'
-            ]);
+            'image' =>'url',
+            'category_id'=>'nullable|exists:categories,id'
+        ]);
             
             $data = $request->all();
             $data['slug'] = Str::slug($request->title,'-');

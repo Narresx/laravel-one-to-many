@@ -48,7 +48,7 @@ class PostController extends Controller
         'title' =>'required|string|min:2|max:75',
         'content' =>'string',
         'image' =>'url',
-        'category_id'=>'nullable|exists:categories_id'
+        'category_id'=>'nullable|exists:category_id'
         ]);
 
         $data = $request->all();

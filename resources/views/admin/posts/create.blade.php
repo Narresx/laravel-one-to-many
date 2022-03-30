@@ -23,9 +23,19 @@
             </textarea>
         </div>
         <div class="form-group">
-            <label for="image">Contenuto</label>
+            <label for="image">Immagine</label>
             <input type="text" class="form-control" id="image" name="image" placeholder="Inserisci qui l'immagine"
                 value="{{ old('image') }}">
+        </div>
+        <div class="form-group">
+            <label for="category">Categoria</label>
+            <select type="text" class="form-control" id="category" name="category_id">
+                <option value="">Nessuna categoria</option>
+                @foreach ($categories as $category)
+                    <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">
+                        {{ $category->label }}</option>
+                @endforeach
+            </select>
         </div>
         <button type=" submit" class="btn btn-success">Conferma</button>
     </form>

@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Post;
+use App\Models\Category;
+
 
 
 class PostController extends Controller
@@ -28,7 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $post = new Post();
+        $categories = Category::all();
+        return view('admin.posts.create', compact('post','categories'));
     }
 
     /**
@@ -43,7 +47,8 @@ class PostController extends Controller
         $request->validate([
         'title' =>'required|string|min:2|max:75',
         'content' =>'string',
-        'image' =>'url'
+        'image' =>'url',
+        'category_id'=>'nullable|exists:categories_id'
         ]);
 
         $data = $request->all();
